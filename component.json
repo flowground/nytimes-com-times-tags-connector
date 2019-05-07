@@ -1,0 +1,55 @@
+{
+    "title": "TimesTags",
+    "description": "With the TimesTags API, you can mine the riches of the New York Times tag set. The TimesTags service matches your query to the controlled vocabularies that fuel NYTimes.com metadata. You supply a string of characters, and the service returns a ranked list of suggested terms.",
+    "docsUrl": "http://developer.nytimes.com/",
+    "url": "https://api.apis.guru/v2/specs/nytimes.com/times_tags/1.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "http://api.nytimes.com/svc/suggest/v1",
+                    "https://api.nytimes.com/svc/suggest/v1",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "apikey": {
+                "label": "api-key (apikey)",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "get_timestags": {
+            "main": "./lib/actions/get_timestags.js",
+            "title": "get_timestags",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_timestags.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
